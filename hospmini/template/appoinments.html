@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+     <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'css/tooplate-style.css' %}">
+     <style>
+
+          table{
+               font-family: arial, sans-serif;
+               width: 100%;
+               border-collapase: collapse;
+          }
+          td,th {
+               border: 1px solid #dddddd;
+               text-align: left;
+               padding: 8px;
+          }
+          tr:nth-child(even) {
+               background-color: #dddddd;
+          }
+     </style>
+     <script>
+    window.onload = function(){
+        {% if messages %}
+            {% for message in messages %}
+                alert("{{message|escapejs}}");
+            {% endfor %}
+        {% endif %}
+    };
+    </script>
+</head>
+<body>
+<!--HEADER-->
+<header>
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-4 col-sm-5">
+                         <p>Welcome to a Professional Health Care</p>
+                    </div>
+                    <div class="col-md-8 col-sm-7 text-align-right">
+                         <span class="phone-icon"><i class="fa fa-phone"></i> 010-060-0160</span>
+                         <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 AM - 10:00 PM (Mon-Fri)</span>
+                         <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="https://www.google.com/intl/en-US/gmail/about/">info@company.com</a></span>
+                    </div>
+
+               </div>
+          </div>
+     </header>
+     <!-- MENU -->
+     <section class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="container">
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="index.html" class="navbar-brand"><i class="fa fa-h-square"></i>armony Health Center</a>
+               </div>
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="docDisplay" class="smoothScroll">Registered Doc's</a></li>
+                         <li><a href="docsform" class="smoothScroll">Doctors</a></li>
+                         <li><a href="adminhome" class="smoothScroll">User</a></li>
+                         <li class="appointment-btn"><a href="adminlogout">Logout</a></li>
+                    </ul>
+               </div>
+          </div>
+     </section>
+<!--TABLES-->
+<section class="tables-sec container">
+<!--     pending appointments-->
+     <h3>Booking Details</h3>
+     {% if data %}
+     <table>
+          <thead>
+          <tr>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Appointment Date</th>
+               <th>Mobile Number</th>
+               <th>Department</th>
+               <th>Gender</th>
+               <th>Accept</th>
+               <th>Reject</th>
+
+          </tr>
+
+          </thead>
+          <tbody>
+          {% for i in data %}
+          <tr>
+               <td>{{i.name}}</td>
+               <td>{{i.email}}</td>
+               <td>{{i.date}}</td>
+               <td>{{i.phone}}</td>
+               <td>{{i.department}}</td>
+               <td>{{i.gender}}</td>
+               <td><a href="/approveapp/{{i.id}}" style="border: 0;outline:none;" class="btn btn-success">Accept</a></td>
+               <td><a href="/rejectapp/{{i.id}}" style="border: 0;outline:none;" class="btn btn-danger">Reject</a></td>
+
+          </tr>
+          {% endfor %}
+          </tbody>
+     </table>
+     {% else %}
+          <h3>NO PENDING APPOINTMENTS </h3>
+     {% endif %}
+
+
+</section>
+<!-- FOOTER -->
+     <footer data-stellar-background-ratio="5" id="foot">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="footer-thumb">
+                              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
+                              <p>harmony medical care,<br>Dheshabimani Road,Near JLN Stadium<br>Kaloor,683210</p>
+
+                              <div class="contact-info">
+                                   <p><i class="fa fa-phone"></i> 010-070-0170</p>
+                                   <p><i class="fa fa-envelope-o"></i> <a href="#">info@company.com</a></p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="footer-thumb">
+                              <h4 class="wow fadeInUp" data-wow-delay="0.4s">IMPORTANT LINKS</h4>
+                              <div class="latest-stories">
+                                   <div class="stories-image">
+                                        <a href="#"><img src="{% static 'images/news-image.jpg' %}" class="img-responsive" alt=""></a>
+                                   </div>
+                                   <div class="stories-info">
+                                        <a href="#"><h5>BOOK AN APPOINTMENT</h5></a>
+                                        <span> 30% Discout On First Booking</span>
+                                   </div>
+                              </div>
+
+                              <div class="latest-stories">
+                                   <div class="stories-image">
+                                        <a href="#"><img src="{% static 'images/news-image.jpg' %}" class="img-responsive" alt=""></a>
+                                   </div>
+                                   <div class="stories-info">
+                                        <a href="#"><h5>FACILITIES PROVIDED</h5></a>
+                                        <span>Know In Details with<br>The Facilities We Provide</span>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="footer-thumb">
+                              <div class="opening-hours">
+                                   <h4 class="wow fadeInUp" data-wow-delay="0.4s">Opening Hours</h4>
+                                   <p>Monday - Friday <span>06:00 AM - 10:00 PM</span></p>
+                                   <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
+                                   <p>Sunday <span>Closed</span></p>
+                              </div>
+
+                              <ul class="social-icon">
+                                   <li><a href="https://www.facebook.com/tooplate" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-instagram"></a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 border-top">
+                         <div class="col-md-4 col-sm-6">
+                              <div class="copyright-text">
+                                   <p>Copyright &copy; 2024 Harmony
+
+<!--                                   | Design: <a href="http://www.tooplate.com" target="_parent">Tooplate</a></p>-->
+                              </div>
+                         </div>
+                         <div class="col-md-6 col-sm-6">
+                              <div class="footer-link">
+                                   <a href="#">Laboratory Tests</a>
+                                   <a href="#">Departments</a>
+                                   <a href="#">Insurance Policy</a>
+                                   <a href="#">Careers</a>
+                              </div>
+                         </div>
+                         <div class="col-md-2 col-sm-2 text-align-center">
+                              <div class="angle-up-btn">
+                                  <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
+                              </div>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </footer>
+
+
+
+ <!-- SCRIPTS -->
+     <script src="{% static 'js/jquery.js' %}"></script>
+     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/jquery.sticky.js' %}"></script>
+     <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+     <script src="{% static 'js/wow.min.js' %}"></script>
+     <script src="{% static 'js/smoothscroll.js' %}"></script>
+     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
